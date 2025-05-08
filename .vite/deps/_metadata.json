@@ -1,0 +1,100 @@
+{
+  "hash": "e6e36687",
+  "configHash": "ae349384",
+  "lockfileHash": "9d73dbb4",
+  "browserHash": "2ca357db",
+  "optimized": {
+    "@mui/icons-material/CheckCircle": {
+      "src": "../../node_modules/@mui/icons-material/esm/CheckCircle.js",
+      "file": "@mui_icons-material_CheckCircle.js",
+      "fileHash": "89dc56db",
+      "needsInterop": false
+    },
+    "@mui/icons-material/UploadFile": {
+      "src": "../../node_modules/@mui/icons-material/esm/UploadFile.js",
+      "file": "@mui_icons-material_UploadFile.js",
+      "fileHash": "8e653ea1",
+      "needsInterop": false
+    },
+    "@mui/material": {
+      "src": "../../node_modules/@mui/material/esm/index.js",
+      "file": "@mui_material.js",
+      "fileHash": "58b7bc22",
+      "needsInterop": false
+    },
+    "@mui/material/Box": {
+      "src": "../../node_modules/@mui/material/esm/Box/index.js",
+      "file": "@mui_material_Box.js",
+      "fileHash": "648d4856",
+      "needsInterop": false
+    },
+    "@mui/material/CssBaseline": {
+      "src": "../../node_modules/@mui/material/esm/CssBaseline/index.js",
+      "file": "@mui_material_CssBaseline.js",
+      "fileHash": "767e011a",
+      "needsInterop": false
+    },
+    "@mui/material/styles": {
+      "src": "../../node_modules/@mui/material/esm/styles/index.js",
+      "file": "@mui_material_styles.js",
+      "fileHash": "530ac61d",
+      "needsInterop": false
+    },
+    "axios": {
+      "src": "../../node_modules/axios/index.js",
+      "file": "axios.js",
+      "fileHash": "c7bf0d16",
+      "needsInterop": false
+    },
+    "react": {
+      "src": "../../node_modules/react/index.js",
+      "file": "react.js",
+      "fileHash": "735288e5",
+      "needsInterop": true
+    },
+    "react-dom/client": {
+      "src": "../../node_modules/react-dom/client.js",
+      "file": "react-dom_client.js",
+      "fileHash": "3542db04",
+      "needsInterop": true
+    },
+    "react/jsx-dev-runtime": {
+      "src": "../../node_modules/react/jsx-dev-runtime.js",
+      "file": "react_jsx-dev-runtime.js",
+      "fileHash": "72cec287",
+      "needsInterop": true
+    }
+  },
+  "chunks": {
+    "chunk-C6WWHQR7": {
+      "file": "chunk-C6WWHQR7.js"
+    },
+    "chunk-OAZAAUMI": {
+      "file": "chunk-OAZAAUMI.js"
+    },
+    "chunk-QEYIDFVM": {
+      "file": "chunk-QEYIDFVM.js"
+    },
+    "chunk-SZRKKK6V": {
+      "file": "chunk-SZRKKK6V.js"
+    },
+    "chunk-HJ7ILYLH": {
+      "file": "chunk-HJ7ILYLH.js"
+    },
+    "chunk-PB44IVIQ": {
+      "file": "chunk-PB44IVIQ.js"
+    },
+    "chunk-NRBY2WFB": {
+      "file": "chunk-NRBY2WFB.js"
+    },
+    "chunk-C4D4O426": {
+      "file": "chunk-C4D4O426.js"
+    },
+    "chunk-6GAV2S6I": {
+      "file": "chunk-6GAV2S6I.js"
+    },
+    "chunk-DC5AMYBS": {
+      "file": "chunk-DC5AMYBS.js"
+    }
+  }
+}
