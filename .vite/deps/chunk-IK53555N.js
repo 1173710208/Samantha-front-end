@@ -11,10 +11,12 @@ import {
   defaultTheme_default,
   identifier_default,
   require_jsx_runtime,
-  require_prop_types,
   styleFunctionSx_default,
   useThemeProps
-} from "./chunk-C4D4O426.js";
+} from "./chunk-R2IQUPN5.js";
+import {
+  require_prop_types
+} from "./chunk-MCMOV7PY.js";
 import {
   require_react
 } from "./chunk-6GAV2S6I.js";
@@ -506,4 +508,4 @@ export {
   deprecatedExtendTheme,
   experimental_sx
 };
-//# sourceMappingURL=chunk-NRBY2WFB.js.map
+//# sourceMappingURL=chunk-IK53555N.js.map

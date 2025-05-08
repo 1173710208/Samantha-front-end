@@ -1,29 +1,34 @@
 import {
+  ownerDocument,
+  useEventCallback_default
+} from "./chunk-QOSCL3SJ.js";
+import {
+  capitalize_default,
+  memoTheme_default
+} from "./chunk-OHV22JTQ.js";
+import {
   useDefaultProps
-} from "./chunk-PB44IVIQ.js";
+} from "./chunk-BHHX232V.js";
 import {
   ClassNameGenerator_default,
-  capitalize,
   clsx_default,
   composeClasses,
   generateUtilityClass,
   generateUtilityClasses,
   isMuiElement,
   require_jsx_runtime,
-  require_prop_types,
   styled_default,
-  unstable_memoTheme,
   useEnhancedEffect_default
-} from "./chunk-C4D4O426.js";
+} from "./chunk-R2IQUPN5.js";
+import {
+  require_prop_types
+} from "./chunk-MCMOV7PY.js";
 import {
   require_react
 } from "./chunk-6GAV2S6I.js";
 import {
   __toESM
 } from "./chunk-DC5AMYBS.js";
-
-// node_modules/@mui/material/esm/utils/capitalize.js
-var capitalize_default = capitalize;
 
 // node_modules/@mui/utils/esm/createChainedFunction/createChainedFunction.js
 function createChainedFunction(...funcs) {
@@ -41,10 +46,6 @@ function createChainedFunction(...funcs) {
 
 // node_modules/@mui/material/esm/utils/createChainedFunction.js
 var createChainedFunction_default = createChainedFunction;
-
-// node_modules/@mui/material/esm/utils/memoTheme.js
-var memoTheme = unstable_memoTheme;
-var memoTheme_default = memoTheme;
 
 // node_modules/@mui/material/esm/SvgIcon/svgIconClasses.js
 function getSvgIconUtilityClass(slot) {
@@ -354,11 +355,6 @@ var deprecatedPropType_default = deprecatedPropType;
 // node_modules/@mui/material/esm/utils/isMuiElement.js
 var isMuiElement_default = isMuiElement;
 
-// node_modules/@mui/utils/esm/ownerDocument/ownerDocument.js
-function ownerDocument(node) {
-  return node && node.ownerDocument || document;
-}
-
 // node_modules/@mui/material/esm/utils/ownerDocument.js
 var ownerDocument_default = ownerDocument;
 
@@ -498,66 +494,8 @@ function useControlled(props) {
 // node_modules/@mui/material/esm/utils/useControlled.js
 var useControlled_default = useControlled;
 
-// node_modules/@mui/utils/esm/useEventCallback/useEventCallback.js
-var React5 = __toESM(require_react(), 1);
-function useEventCallback(fn) {
-  const ref = React5.useRef(fn);
-  useEnhancedEffect_default(() => {
-    ref.current = fn;
-  });
-  return React5.useRef((...args) => (
-    // @ts-expect-error hide `this`
-    (0, ref.current)(...args)
-  )).current;
-}
-var useEventCallback_default = useEventCallback;
-
 // node_modules/@mui/material/esm/utils/useEventCallback.js
 var useEventCallback_default2 = useEventCallback_default;
-
-// node_modules/@mui/utils/esm/useForkRef/useForkRef.js
-var React6 = __toESM(require_react(), 1);
-function useForkRef(...refs) {
-  const cleanupRef = React6.useRef(void 0);
-  const refEffect = React6.useCallback((instance) => {
-    const cleanups = refs.map((ref) => {
-      if (ref == null) {
-        return null;
-      }
-      if (typeof ref === "function") {
-        const refCallback = ref;
-        const refCleanup = refCallback(instance);
-        return typeof refCleanup === "function" ? refCleanup : () => {
-          refCallback(null);
-        };
-      }
-      ref.current = instance;
-      return () => {
-        ref.current = null;
-      };
-    });
-    return () => {
-      cleanups.forEach((refCleanup) => refCleanup == null ? void 0 : refCleanup());
-    };
-  }, refs);
-  return React6.useMemo(() => {
-    if (refs.every((ref) => ref == null)) {
-      return null;
-    }
-    return (value) => {
-      if (cleanupRef.current) {
-        cleanupRef.current();
-        cleanupRef.current = void 0;
-      }
-      if (value != null) {
-        cleanupRef.current = refEffect(value);
-      }
-    };
-  }, refs);
-}
-
-// node_modules/@mui/material/esm/utils/useForkRef.js
-var useForkRef_default = useForkRef;
 
 // node_modules/@mui/material/esm/utils/mergeSlotProps.js
 function isEventHandler(key, value) {
@@ -641,10 +579,8 @@ var unstable_ClassNameGenerator = {
 };
 
 export {
-  capitalize_default,
   createChainedFunction,
   createChainedFunction_default,
-  memoTheme_default,
   getSvgIconUtilityClass,
   svgIconClasses_default,
   SvgIcon_default,
@@ -653,7 +589,6 @@ export {
   debounce_default,
   deprecatedPropType_default,
   isMuiElement_default,
-  ownerDocument,
   ownerDocument_default,
   ownerWindow,
   ownerWindow_default,
@@ -666,11 +601,8 @@ export {
   unsupportedProp_default,
   useControlled,
   useControlled_default,
-  useEventCallback_default,
-  useEventCallback_default2,
-  useForkRef,
-  useForkRef_default,
+  useEventCallback_default2 as useEventCallback_default,
   mergeSlotProps,
   unstable_ClassNameGenerator
 };
-//# sourceMappingURL=chunk-QEYIDFVM.js.map
+//# sourceMappingURL=chunk-5ZU66OVY.js.map

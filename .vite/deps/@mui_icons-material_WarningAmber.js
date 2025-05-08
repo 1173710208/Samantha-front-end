@@ -16,12 +16,14 @@ import {
   __toESM
 } from "./chunk-DC5AMYBS.js";
 
-// node_modules/@mui/icons-material/esm/UploadFile.js
+// node_modules/@mui/icons-material/esm/WarningAmber.js
 var import_jsx_runtime = __toESM(require_jsx_runtime());
-var UploadFile_default = createSvgIcon((0, import_jsx_runtime.jsx)("path", {
-  d: "M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8zm4 18H6V4h7v5h5zM8 15.01l1.41 1.41L11 14.84V19h2v-4.16l1.59 1.59L16 15.01 12.01 11z"
-}), "UploadFile");
+var WarningAmber_default = createSvgIcon([(0, import_jsx_runtime.jsx)("path", {
+  d: "M12 5.99 19.53 19H4.47zM12 2 1 21h22z"
+}, "0"), (0, import_jsx_runtime.jsx)("path", {
+  d: "M13 16h-2v2h2zm0-6h-2v5h2z"
+}, "1")], "WarningAmber");
 export {
-  UploadFile_default as default
+  WarningAmber_default as default
 };
-//# sourceMappingURL=@mui_icons-material_UploadFile.js.map
+//# sourceMappingURL=@mui_icons-material_WarningAmber.js.map

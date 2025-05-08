@@ -3,9 +3,11 @@ import {
   createBox,
   createTheme,
   generateUtilityClasses,
-  identifier_default,
+  identifier_default
+} from "./chunk-R2IQUPN5.js";
+import {
   require_prop_types
-} from "./chunk-C4D4O426.js";
+} from "./chunk-MCMOV7PY.js";
 import {
   __toESM
 } from "./chunk-DC5AMYBS.js";
@@ -50,4 +52,4 @@ export {
   boxClasses_default,
   Box_default
 };
-//# sourceMappingURL=chunk-SZRKKK6V.js.map
+//# sourceMappingURL=chunk-COHTMQ7S.js.map
