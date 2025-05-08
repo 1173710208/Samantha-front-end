@@ -1,5 +1,4 @@
 // src/components/DocumentForm.tsx
-import React from 'react';
 import {
   Paper, Typography, TextField, MenuItem, Button, Box, Select, InputLabel, FormControl
 } from '@mui/material';
@@ -17,9 +16,9 @@ const DocumentForm = () => {
 
       <TextField fullWidth label="Date of Report" margin="dense" type="date" InputLabelProps={{ shrink: true }} />
 
-      <TextField fullWidth label="Subject" margin="dense" defaultValue="Ultrasound Scrotum Examination Report" />
+      <TextField fullWidth label="Subject" margin="dense" />
 
-      <TextField fullWidth label="Contact of Source" margin="dense" defaultValue="I-MED Radiology" />
+      <TextField fullWidth label="Contact of Source" margin="dense"  />
 
       <TextField fullWidth label="Store In" margin="dense" select>
           <MenuItem value="Correspondence">Correspondence</MenuItem>

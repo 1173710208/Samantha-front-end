@@ -1,4 +1,4 @@
-import React from 'react';
+// src/pages/Dashboard.tsx
 import DashboardLayout from '../layout/DashboardLayout';
 
 const Dashboard = () => {

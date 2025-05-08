@@ -1,5 +1,4 @@
 // src/components/ImportedDocumentsTable.tsx
-import React from 'react';
 import { Paper, Typography, Table, TableHead, TableRow, TableCell, TableBody } from '@mui/material';
 
 const ImportedDocumentsTable = () => {
