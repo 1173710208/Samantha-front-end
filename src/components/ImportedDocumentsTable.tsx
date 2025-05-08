@@ -1,36 +1,53 @@
 // src/components/ImportedDocumentsTable.tsx
-import { Paper, Typography, Table, TableHead, TableRow, TableCell, TableBody } from '@mui/material';
+import React from 'react';
+import {
+  Paper,
+  Typography,
+  Table,
+  TableHead,
+  TableRow,
+  TableCell,
+  TableBody,
+} from '@mui/material';
 
-const ImportedDocumentsTable = () => {
-  const rows = [
-    { patient: 'STONER, Bridget', user: 'WOOD, Sally', time: '12:39:00 22/04/2025' },
-    { patient: 'PREDIA, Arthur', user: 'WOOD, Sally', time: '12:38:58 22/04/2025' },
-    { patient: 'STONER, Bridget', user: 'WOOD, Sally', time: '12:39:00 22/04/2025' },
-    { patient: 'PREDIA, Arthur', user: 'WOOD, Sally', time: '12:38:58 22/04/2025' },
-    { patient: 'STONER, Bridget', user: 'WOOD, Sally', time: '12:39:00 22/04/2025' },
-    { patient: 'PREDIA, Arthur', user: 'WOOD, Sally', time: '12:38:58 22/04/2025' },
-    { patient: 'STONER, Bridget', user: 'WOOD, Sally', time: '12:39:00 22/04/2025' },
-    { patient: 'PREDIA, Arthur', user: 'WOOD, Sally', time: '12:38:58 22/04/2025' }
-  ];
+interface RowData {
+  id: number;
+  patient: string;
+  doctor: string;
+  time: string;
+  full: any;
+}
 
+const ImportedDocumentsTable = ({
+  rows,
+  onSelect,
+}: {
+  rows: RowData[];
+  onSelect: (row: any) => void;
+}) => {
   return (
-    <Paper elevation={2} sx={{ p: 2, mt: 2 }}>
+    <Paper elevation={2} sx={{ p: 2, height: '41vh', overflowY: 'auto' }}>
       <Typography variant="h6" gutterBottom>
         Imported Documents
       </Typography>
-      <Table size="small">
+      <Table size="small" >
         <TableHead>
           <TableRow>
             <TableCell>Patient</TableCell>
-            <TableCell>User</TableCell>
-            <TableCell>Time</TableCell>
+            <TableCell>Doctor</TableCell>
+            <TableCell>Imported At</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row, idx) => (
-            <TableRow key={idx} hover>
+          {rows.map((row) => (
+            <TableRow
+              key={row.id}
+              hover
+              sx={{ cursor: 'pointer' }}
+              onClick={() => onSelect(row.full)}
+            >
               <TableCell>{row.patient}</TableCell>
-              <TableCell>{row.user}</TableCell>
+              <TableCell>{row.doctor}</TableCell>
               <TableCell>{row.time}</TableCell>
             </TableRow>
           ))}

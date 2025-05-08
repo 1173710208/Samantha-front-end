@@ -1,0 +1,19 @@
+.split-row {
+    display: flex;
+    width: 100%;
+    height: 100%;
+  }
+  
+  .split-row > .gutter {
+    background-color: #e0e0e0;
+    cursor: col-resize;
+    transition: background-color 0.2s ease;
+    z-index: 10;
+  }
+  
+  .split-row > .gutter:hover,
+  .split-row > .gutter:active {
+    background-color: #adcee9; /* brighter blue */
+  
+  }
+  

@@ -6,15 +6,17 @@ import {
     Button,
     Box,
     Autocomplete,
+    Snackbar,
+    Alert,
   } from '@mui/material';
   import { useState, useEffect } from 'react';
+  import axios from 'axios';
   
   interface DocumentFormProps {
     data?: any;
+    onImported?: () => void;
   }
   
-  const patients = ['MISHA, Benny', 'JANET, Roden', 'Susan Smith'];
-  const doctors = ['WOOD, Sally', 'Andrew McLean', 'Alex Brown'];
   const categories = [
     'Admissions summary',
     'Advance care planning',
@@ -44,7 +46,10 @@ import {
   
   const normalize = (str: string) => str.toLowerCase().replace(/[^a-z]/g, '');
   
-  const DocumentForm = ({ data }: DocumentFormProps) => {
+  const DocumentForm = ({ data, onImported }: DocumentFormProps) => {
+    const [patients, setPatients] = useState<any[]>([]);
+    const [doctors, setDoctors] = useState<any[]>([]);
+  
     const [patientName, setPatientName] = useState('');
     const [reportDate, setReportDate] = useState('');
     const [subject, setSubject] = useState('');
@@ -53,13 +58,51 @@ import {
     const [doctorName, setDoctorName] = useState('');
     const [category, setCategory] = useState('');
   
+    const [snackbar, setSnackbar] = useState<{
+      open: boolean;
+      success: boolean;
+      message: string;
+    }>({ open: false, success: true, message: '' });
+  
+    useEffect(() => {
+      const fetchOptions = async () => {
+        try {
+          const [patientRes, doctorRes] = await Promise.all([
+            axios.get('http://localhost:3000/patients'),
+            axios.get('http://localhost:3000/doctors'),
+          ]);
+          setPatients(patientRes.data);
+          setDoctors(doctorRes.data);
+        } catch (err) {
+          console.error('Failed to fetch dropdown options:', err);
+        }
+      };
+      fetchOptions();
+    }, []);
+  
+    const getPatientIdByName = (name: string): number | undefined => {
+      const found = patients.find(p => `${p.firstName} ${p.secondName}` === name);
+      return found?.id;
+    };
+  
+    const getDoctorIdByName = (name: string): number | undefined => {
+      const found = doctors.find(d => `${d.firstName} ${d.secondName}` === name);
+      return found?.id;
+    };
+  
     const resetFormFromData = (doc: any) => {
-      setPatientName(doc?.patientName || '');
-      setReportDate(doc?.reportDate || '');
+      const patientFullName = `${doc?.patient?.firstName || ''} ${doc?.patient?.secondName || ''}`.trim();
+      setPatientName(patientFullName);
+  
+      const doctorFullName = `${doc?.doctor?.firstName || ''} ${doc?.doctor?.secondName || ''}`.trim();
+      setDoctorName(doctorFullName);
+  
+      const dateOnly = doc?.reportDate ? doc.reportDate.split('T')[0] : '';
+      setReportDate(dateOnly);
+  
       setSubject(doc?.subject || '');
       setContactSource(doc?.contactSource || '');
       setStoreIn(doc?.storeIn || '');
-      setDoctorName(doc?.doctorName || '');
   
       const normalizedCat = normalize(doc?.category || '');
       const matched = categories.find((c) => normalize(c) === normalizedCat);
@@ -70,15 +113,40 @@ import {
       resetFormFromData(data);
     }, [data]);
   
+    const handleImport = async () => {
+      if (!data?.id) return;
+      try {
+        const patientId = getPatientIdByName(patientName);
+        const doctorId = getDoctorIdByName(doctorName);
+  
+        await axios.put(`http://localhost:3000/documents/${data.id}`, {
+          patientId,
+          doctorId,
+          reportDate,
+          subject,
+          contactSource,
+          storeIn,
+          category,
+        });
+  
+        setSnackbar({ open: true, success: true, message: 'Document imported successfully!' });
+        if (typeof onImported === 'function') onImported();
+      } catch (err) {
+        console.error('Import failed:', err);
+        setSnackbar({ open: true, success: false, message: 'Import failed. Please try again.' });
+      }
+    };
+  
+    const isImported = data?.status === 'IMPORTED';
+  
     return (
       <Paper elevation={2} sx={{ p: 3, height: '94.5vh', overflow: 'auto' }}>
         <Typography variant="h6" gutterBottom>
           Document Information
         </Typography>
   
-        {/* Patient Name (dropdown with search) */}
         <Autocomplete
-          options={patients}
+          options={patients.map(p => `${p.firstName} ${p.secondName}`)}
           value={patientName}
           onChange={(e, value) => setPatientName(value || '')}
           renderInput={(params) => (
@@ -86,7 +154,6 @@ import {
           )}
         />
   
-        {/* Date of Report */}
         <TextField
           fullWidth
           label="Date of Report"
@@ -97,7 +164,6 @@ import {
           onChange={(e) => setReportDate(e.target.value)}
         />
   
-        {/* Subject */}
         <TextField
           fullWidth
           label="Subject"
@@ -106,7 +172,6 @@ import {
           onChange={(e) => setSubject(e.target.value)}
         />
   
-        {/* Contact of Source */}
         <TextField
           fullWidth
           label="Contact of Source"
@@ -115,7 +180,6 @@ import {
           onChange={(e) => setContactSource(e.target.value)}
         />
   
-        {/* Store In */}
         <TextField
           fullWidth
           select
@@ -128,9 +192,8 @@ import {
           <MenuItem value="Investigations">Investigations</MenuItem>
         </TextField>
   
-        {/* User / Doctor / GP */}
         <Autocomplete
-          options={doctors}
+          options={doctors.map(d => `${d.firstName} ${d.secondName}`)}
           value={doctorName}
           onChange={(e, value) => setDoctorName(value || '')}
           renderInput={(params) => (
@@ -138,7 +201,6 @@ import {
           )}
         />
   
-        {/* Category (strict options only) */}
         <TextField
           fullWidth
           select
@@ -154,23 +216,41 @@ import {
           ))}
         </TextField>
   
-        {/* Buttons */}
         <Box display="flex" flexDirection="column" gap={1} mt={2}>
-          <Button variant="contained" color="success" fullWidth>
+          <Button
+            variant="contained"
+            color="success"
+            fullWidth
+            onClick={handleImport}
+            disabled={isImported}
+          >
             Import Document
-          </Button>
-          <Button variant="contained" fullWidth>
-            Reanalyze
           </Button>
           <Button
             variant="outlined"
             color="error"
             fullWidth
             onClick={() => resetFormFromData(data)}
+            disabled={isImported}
           >
             Reset
           </Button>
         </Box>
+  
+        <Snackbar
+          open={snackbar.open}
+          autoHideDuration={4000}
+          onClose={() => setSnackbar({ ...snackbar, open: false })}
+          anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+        >
+          <Alert
+            onClose={() => setSnackbar({ ...snackbar, open: false })}
+            severity={snackbar.success ? 'success' : 'error'}
+            sx={{ width: '100%' }}
+          >
+            {snackbar.message}
+          </Alert>
+        </Snackbar>
       </Paper>
     );
   };
