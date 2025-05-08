@@ -41,7 +41,7 @@ const ImportQueueTable = ({
   };
 
   return (
-    <Paper elevation={2} sx={{ p: 2,height: '36vh', overflowY: 'auto' }}>
+    <Paper elevation={2} sx={{ p: 2,height: '35vh', overflowY: 'auto' }}>
       <Typography variant="h6" gutterBottom>
         Import Queue
       </Typography>

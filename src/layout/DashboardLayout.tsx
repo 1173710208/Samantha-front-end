@@ -6,6 +6,7 @@ import CircularProgress from '@mui/material/CircularProgress';
 import Snackbar from '@mui/material/Snackbar';
 import Typography from '@mui/material/Typography';
 import UploadButton from '../components/UploadButton';
+import BulkImportButton from '../components/BulkImportButton';
 import ImportQueueTable from '../components/ImportQueueTable';
 import ImportedDocumentsTable from '../components/ImportedDocumentsTable';
 import PdfViewer from '../components/PdfViewer';
@@ -75,7 +76,7 @@ const DashboardLayout = () => {
       >
         {/* Left Column */}
         <Box sx={{ padding: 2, display: 'flex', flexDirection: 'column', gap: 2, overflow: 'auto' }}>
-          <Box display="flex" alignItems="center" justifyContent="space-between">
+          <Box display="flex" alignItems="center" justifyContent="space-between" sx={{ mb: 2 }}>
             <Box display="flex" alignItems="center" gap={3}>
             <Face3Icon sx={{ fontSize: 48, color: 'primary.main'}} />
 
@@ -85,8 +86,9 @@ const DashboardLayout = () => {
             </Box>
           </Box>
           <UploadButton onUpload={handleUploadFiles} />
+          <BulkImportButton onComplete={fetchDocuments} />
           <Box flex="1" display="flex" flexDirection="column" gap={2}>
-            <Box sx={{ maxHeight: '38vh', overflowY: 'auto' }}>
+            <Box sx={{ maxHeight: '35vh', overflowY: 'auto' }}>
               <ImportQueueTable
                 rows={pendingDocs.map((doc) => ({
                   id: doc.id,
@@ -99,7 +101,7 @@ const DashboardLayout = () => {
                 onSelect={(row) => setSelectedDoc(row)}
               />
             </Box>
-            <Box sx={{ maxHeight: '41vh', overflowY: 'auto' }}>
+            <Box sx={{ maxHeight: '35vh', overflowY: 'auto' }}>
               <ImportedDocumentsTable
                 rows={importedDocs.map((doc) => ({
                   id: doc.id,

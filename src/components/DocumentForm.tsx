@@ -246,7 +246,7 @@ import {
           <Alert
             onClose={() => setSnackbar({ ...snackbar, open: false })}
             severity={snackbar.success ? 'success' : 'error'}
-            sx={{ width: '100%' }}
+            sx={{ width: '100%', fontSize: '1.2rem', padding: '16px 24px', minWidth: '300px', maxWidth: '600px', }}
           >
             {snackbar.message}
           </Alert>
